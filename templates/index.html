@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+    <title>Windows of NYC mashup</title>
+    <script>window.WINDOWS = {{ windows|tojson }}</script>
+    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
+    <!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css' el='stylesheet' /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+    <style>
+        body { margin:0; padding:0; }
+        /*#map { position:absolute; top:0; bottom:0; right: 0; left: 320px; }*/
+        img { margin: auto; }
+    </style>
+</head>
+<body>
+
+    <!-- .container is main centered wrapper -->
+    <div class="container">
+
+      <!-- {% for window in windows %}
+          <div class="window" tabindex="{{ loop.index0 }}" data-idx="{{ loop.index0 }}" style="background-color: {{ window.backgroundColor }}; color: {{ window.color }}">
+              <img src="{{ window.image_url }}" />
+              <p class="address">{{ window.address }}</p>
+              <p class="neighborhood">{{ window.neighborhood}}</p>
+          </div>
+      {% endfor %} -->
+
+      <!-- {% for window in windows %}
+          <div class="row">
+              <div class="twelve columns">
+              </div>
+          </div>
+      {% endfor %} -->
+
+      <!-- {% for window in windows %}
+          <div class="columns is-centered">
+              <div class="column is-half">
+                  <img src="{{ window.image_url }}" />
+              </div>
+          </div>
+      {% endfor %} -->
+
+      <div class="columns">
+
+      {% for window in windows %}
+          <div class="column">
+              <img src="{{ window.image_url }}" />
+          </div>
+
+              <!-- if last column in row -->
+              {% if loop.index is divisibleby(4) and not loop.last %}
+              </div><div class="columns">
+              {% endif %}
+
+          {% endfor %}
+
+      </div>
+
+    <!-- <div id='map'></div>
+
+    <script type="text/javascript">
+        L.mapbox.accessToken = 'YOUR_MAPBOX_TOKEN';
+        var map = L.mapbox.map('map', 'mapbox.streets');
+    </script> -->
+</body>
+</html>
