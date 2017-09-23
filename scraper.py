@@ -15,7 +15,7 @@ class Scraper:
         html = request.text
         soup = BeautifulSoup(html)
         windows_markup = soup.findAll('div', { "class" : "window" })
-        for idx, window_html in enumerate(windows_markup[:5]):
+        for idx, window_html in enumerate(windows_markup):
             window_soup = BeautifulSoup(str(window_html), "html.parser")
             image_url = window_soup.find("img")
             if image_url:
@@ -39,5 +39,3 @@ class Scraper:
         with open('windows.json', 'w') as f:
             json.dump(windows, f)
         # return windows
-
-Scraper().scrape()
